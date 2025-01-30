@@ -4,16 +4,20 @@ namespace Game.Shooting
 {
     public class Bullet : MonoBehaviour
     {
+        public float Damage {  get; private set; }
+
         private Vector3 _direcion;
         private float _flySpeed;
         private float _maxFlyDistance;
         private float _currentFlyDistance;
 
-        public void Initialize(Vector3 direction, float maxFlyDistance, float flySpeed)
+        public void Initialize(Vector3 direction, float maxFlyDistance, float flySpeed, float damage)
         {
             _direcion = direction;
             _maxFlyDistance = maxFlyDistance;
             _flySpeed = flySpeed;
+
+            Damage = damage;
         }
 
         protected void Update()
