@@ -11,6 +11,8 @@ namespace Game.Movement
         private float _speed = 1f;
         [SerializeField]
         private float _maxRadiansDelta = 10f;
+        [SerializeField]
+        private float _sprintMultiplier = 2f;
 
         public Vector3 MovementDirection {  get; set; }
         public Vector3 LookDirection {  get; set; }
@@ -32,7 +34,13 @@ namespace Game.Movement
 
         private void Translate()
         {
-            var delta = MovementDirection * _speed * Time.deltaTime;
+            var CurrentSpeed = _speed;
+            if (Input.GetKey(KeyCode.Space))
+            {
+                CurrentSpeed *= _sprintMultiplier;
+            }
+
+            var delta = MovementDirection * CurrentSpeed * Time.deltaTime;
             _characterController.Move(delta);
         }
 
